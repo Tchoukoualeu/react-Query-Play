@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Table } from "./components/Table"
+import { Order } from "./components/Order"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QueryClientProvider client={queryClient}>
+        <Router basename={process.env.REACT_APP_CUSTOM_PATH}>
+          <Routes>
+            <Route path="/order/:id" element={<Order />}></Route>
+            <Route path="/orders" element={<Table />}></Route>
+          </Routes>
+        </Router>
+      </QueryClientProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.RowSection__Column {
+  display: flex;
+  flex-direction: row;
+  padding: 0.15rem;
+}
+.RowSection__Label {
+  width: 140px;
+  text-align: left;
+}
+.RowSection__Content {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  text-align: right;
+  width: 300px;
+}
