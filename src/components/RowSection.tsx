@@ -5,7 +5,7 @@ export const RowSection: FC<{
   content?: string | number | null | ReactNode
 }> = ({ label, content }) => (
   <div className="RowSection__Column">
-    <div className="RowSection__Label">{label}:</div>
+    <div className="RowSection__Label">{label}</div>
     {!!content && <div className="RowSection__Content">{content}</div>}
   </div>
 )
