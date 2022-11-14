@@ -1,30 +1,18 @@
-import { Button, Container, TextField, Paper } from "@mui/material"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
-import { StateType, UpdatePayload } from "../models/orderModels"
+import { Button, Container, TextField, Paper } from "@mui/material"
+import { StateType } from "../models/orderModels"
 import { useUpdateAnOrder } from "../services/useUpdateAnOrder"
 
 export const UpdateForm = ({
   currentStatus,
   id,
 }: {
-  id?: string
+  id: string
   currentStatus?: StateType
 }) => {
   const [name, setName] = useState("")
 
-  const { updateOrder } = useUpdateAnOrder()
-
-  const queryClient = useQueryClient()
-
-  const mutation = useMutation({
-    mutationFn: (data: UpdatePayload) => updateOrder(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["fect-order-by-id"],
-      })
-    },
-  })
+  const { mutation } = useUpdateAnOrder()
 
   if (currentStatus === "OPEN") {
     return (
@@ -36,9 +24,9 @@ export const UpdateForm = ({
           onSubmit={(e) => {
             e.preventDefault()
             mutation.mutate({
-              _id: id as string,
+              _id: id,
               currentState: "IN_PROGRESS",
-              createdAt: new Date().toDateString(),
+              createdAt: new Date().toISOString(),
               ...(name && { assignedTo: name }),
             })
           }}
@@ -73,7 +61,7 @@ export const UpdateForm = ({
           mutation.mutate({
             _id: id as string,
             currentState: "COMPLETE",
-            createdAt: new Date().toDateString(),
+            createdAt: new Date().toISOString(),
           })
         }
       >{`Set as complete`}</Button>
