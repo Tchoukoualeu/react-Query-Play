@@ -16,6 +16,7 @@ export interface OrderI {
   currentState: StateType
   stateHistory: [
     {
+      _id: string
       state: StateType
       createdAt: string
       assignedTo: string

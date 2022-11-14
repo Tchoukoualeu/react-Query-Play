@@ -23,7 +23,7 @@ export const Table = () => {
 
   if (isLoading) return <>"Loading..."</>
 
-  if (error instanceof Error || !data) return <>{"An error has occurred:"}</>
+  if (error instanceof Error || !data) return <>{"An error has occurred"}</>
 
   return (
     <>
