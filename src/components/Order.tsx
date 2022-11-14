@@ -5,6 +5,7 @@ import { useFetchOrders } from "../services/useFetchOrders"
 import { RowSection } from "./RowSection"
 import { formatDate } from "../utils/format"
 import { UpdateForm } from "./UpdateForm"
+import { AssignedTo } from "./AssignedTo"
 
 export const Order = () => {
   const { id } = useParams()
@@ -43,6 +44,8 @@ export const Order = () => {
             content={`${data?.customer.fname} ${data?.customer.lname}`}
           />
           <RowSection label="Current Status" content={data?.currentState} />
+
+          <AssignedTo data={data} />
         </div>
 
         <Divider />
